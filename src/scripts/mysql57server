@@ -1,0 +1,8 @@
+docker run -p 3306:3306 --name mysql57server --rm \
+        -v /data/docker/mysql/conf:/etc/mysql \
+        -v /data/docker/mysql/logs:/var/log/mysql \
+        -v /data/docker/mysql/data:/var/lib/mysql \
+        -e MYSQL_ROOT_PASSWORD=root \
+        -itd mysql:5.7 \
+        --character-set-server=utf8 \
+        --collation-server=utf8_unicode_ci
