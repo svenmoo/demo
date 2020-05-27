@@ -1,32 +1,36 @@
 package com.example.demo;
 
-import com.example.demo.dao.CityMapper;
-import com.example.demo.model.City;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.context.annotation.Bean;
+import org.springframework.core.convert.converter.Converter;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @SpringBootApplication
-@RestController
 public class DemoApplication {
-
-    @Autowired
-    private CityMapper cityMapper;
-
 
     public static void main(String[] args) {
         SpringApplication.run(DemoApplication.class, args);
     }
 
-    @GetMapping("/hello")
-    public String hello(@RequestParam(value = "name", defaultValue = "CA") String name) {
-        City data = cityMapper.findByState(name);
-        return String.format("Hello %s!", data.getCity());
+    @Bean
+    public Converter<String, Date> addNewConvert() {
+        return new Converter<String, Date>() {
+            @Override
+            public Date convert(String source) {
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                Date date = null;
+                try {
+                    date = sdf.parse( source);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                return date;
+            }
+        };
     }
-
 }
 
 
