@@ -3,6 +3,7 @@ package com.example.demo.controllers;
 import com.example.demo.dao.CityMapper;
 import com.example.demo.model.City;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,11 +19,14 @@ public class CityController {
     @Autowired
     private CityMapper cityMapper;
 
+    @Value("${user.testv}")
+    private String test;
+
 
     @GetMapping("/state")
-    public Date city(@RequestParam(value = "name", defaultValue = "CA") String name) {
+    public String city(@RequestParam(value = "name", defaultValue = "CA") String name) {
         City data = cityMapper.findByState(name);
-        return new Date();
+        return data.getCity() + test;
     }
 
     @PostMapping("/state")
