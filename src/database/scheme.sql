@@ -1,0 +1,9 @@
+CREATE DATABASE demo;
+USE demo;
+CREATE TABLE City (
+	CityId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	State VARCHAR(50) NOT NULL,
+	City VARCHAR(50) NOT NULL
+);
+INSERT City (State, City) VALUE ('CA', 'cc');
+INSERT City (State, City) VALUE ('NY', 'cy');

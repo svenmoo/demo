@@ -5,6 +5,6 @@ spring:
   datasource:
     name: test
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://192.168.1.188:3306
+    url: jdbc:mysql://192.168.1.188:3306/demo?useUnicode=true&characterEncoding=utf8&useSSL=false
     username: root
     password: root

@@ -1,9 +1,10 @@
-package com.example.demo;
+package com.example.demo.dao;
 
+import com.example.demo.model.City;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Component;
 
-@Component
+//@Component
 public class CityDao {
 
     private final SqlSession sqlSession;
@@ -12,7 +13,7 @@ public class CityDao {
         this.sqlSession = sqlSession;
     }
 
-    public City selectCityById(long id) {
+    public City selectCityById(int id) {
         return this.sqlSession.selectOne("selectCityById", id);
     }
 
